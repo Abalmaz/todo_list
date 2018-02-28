@@ -1,0 +1,17 @@
+<% @projects.each do |project|%>
+	<h2><%= project.title %></h2>
+	<div class="links">
+		<%= link_to 'Edit', edit_project_path(project) %> |
+		<%= link_to 'Delete', project_path(project), method: :delete, data: {confirm: "Are you sure?"} %>
+	</div>
+		<%= form_for ([project, project.tasks.build]) do |f| %>
+			<%= f.text_field :content, placeholder: "Start typing here to create a task..." %>
+		<%= f.submit %>
+		<% end %>
+		<% project.tasks.each do |task| %>
+			<p><%= task.content %></p>
+			
+		<% end %>	
+<% end %>
+
+<%= link_to 'Add TODO List', new_project_path %>
