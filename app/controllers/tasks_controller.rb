@@ -5,8 +5,8 @@ class TasksController < ApplicationController
 
 	def create
 		@task = @project.tasks.create(task_params)
-
 		redirect_to root_path
+		@task.save
 	end
 
 	def destroy
@@ -21,6 +21,12 @@ class TasksController < ApplicationController
 
 	def edit
     end
+
+    def update
+	    if @task.update(task_params)
+	    	redirect_to root_path
+		end
+	end
 
 	def complete
 		@task.update_attribute(:completed_at, Time.now)

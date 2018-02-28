@@ -1,15 +1,19 @@
-<% @projects.each do |project|%>
-	<h2><%= project.title %></h2>
-	<div class="links">
-		<%= link_to 'Edit', edit_project_path(project) %> |
-		<%= link_to 'Delete', project_path(project), method: :delete, data: {confirm: "Are you sure?"} %>
-	</div>
-	<div class="forms">
-		<%= render 'tasks/form', project: project %>
-	</div>
-	<div class="tasks">
-		<%= render 'tasks/task', project: project %>
-	</div>	
+<% if @projects.present? %>
+	<% @projects.each do |project|%>
+		<h2><%= project.title %></h2>
+		<div class="links">
+			<%= link_to 'Edit', edit_project_path(project) %> |
+			 <div class="trash">
+				<%= link_to 'Delete', project_path(project), method: :delete, data: {confirm: "Are you sure?"} %>
+				<i class="fa fa-trash"></i>
+			</div>
+		</div>
+		<div class="forms">
+			<%= render 'tasks/form', project: project %>
+		</div>
+		<div class="tasks">
+			<%= render 'tasks/task', project: project %>
+		</div>	
+	<% end %>
+	<%= link_to 'Add TODO List', new_project_path %>
 <% end %>
-
-<%= link_to 'Add TODO List', new_project_path %>

@@ -9,24 +9,30 @@
   </head>
 
   <body>
-
-  	<% flash.each do |name, msg| %>
-  		<%= content_tag(:div, msg, class: "alert alert-#{name}") %>
-  	<% end %>
-
-    <% if user_signed_in? %>
-      <ul>
-        <li><%= link_to 'Account', edit_user_registration_path %></li>
-        <li><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></li>
-      </ul>
-      <% else %>
-      <ul>
-        <li><%= link_to 'Sign up', new_user_registration_path %></li>
-        <li><%= link_to 'Sign in', new_user_session_path %></li>
-      </ul>
-
-    <% end %>
-
-    <%= yield %>
+    <header>
+      <nav>
+        <% if user_signed_in? %>
+          <ul>
+            <li><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></li>
+          </ul>  
+        <% else %>
+          <ul>
+            <li><%= link_to 'Sign up', new_user_registration_path %></li>
+            <li><%= link_to 'Sign in', new_user_session_path %></li>
+          </ul>
+        <% end %>      
+      </nav>
+      <h1>simple todo lists</h1>
+      <p>from ruby garage</p>
+    </header>
+    <div class="wrapper">
+        <% flash.each do |name, msg| %>
+          <%= content_tag(:div, msg, class: "alert alert-#{name}") %>
+        <% end %>
+    </div>
+    <div class="wrapper">
+          <%= yield %> 
+    </div>
+    <footer><p>©Ruby Garage</p></footer>   
   </body>
 </html>
