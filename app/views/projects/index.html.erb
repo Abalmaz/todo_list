@@ -9,11 +9,11 @@
 			</div>
 		</div>
 		<div class="forms">
-			<%= render 'tasks/form', project: project %>
+			<%= render 'tasks/form',project: project, task: project.tasks.build %>
 		</div>
 		<div class="tasks">
 			<%= render 'tasks/task', project: project %>
 		</div>	
 	<% end %>
-	<%= link_to 'Add TODO List', new_project_path %>
 <% end %>
+<%= link_to 'Add TODO List', new_project_path %>

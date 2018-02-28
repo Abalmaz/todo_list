@@ -1,4 +1,4 @@
-<%= form_for ([project, project.tasks.build]) do |f| %>
+<%= form_for([project, task]) do |f| %>
 	<%= f.text_field :content, placeholder: "Start typing here to create a task..." %>
 	<%= f.submit %>
 <% end %>

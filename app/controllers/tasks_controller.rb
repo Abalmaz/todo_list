@@ -11,9 +11,9 @@ class TasksController < ApplicationController
 
 	def destroy
 		if @task.destroy
-			flash[:success] = "Item was deleted."
+			flash[:success] = "Task was deleted."
 		else 
-			flash[:error] = "Item couldn't be deleted. Some thing wrong."
+			flash[:error] = "Task couldn't be deleted. Some thing wrong."
 		end
 
 		redirect_to root_path
@@ -23,14 +23,9 @@ class TasksController < ApplicationController
     end
 
     def update
-	    if @task.update(task_params)
+	    if @task.update_attributes!(task_params)
 	    	redirect_to root_path
 		end
-	end
-
-	def complete
-		@task.update_attribute(:completed_at, Time.now)
-		redirect_to @project, notice: "Completed"
 	end
 
 	private
