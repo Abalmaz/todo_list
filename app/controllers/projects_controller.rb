@@ -26,23 +26,16 @@ class ProjectsController < ApplicationController
 	end
 	
 	def update
-	    respond_to do |format|
-	      if @project.update(project_params)
-	        format.html { redirect_to root_path, notice: 'Todo list was successfully updated.' }
-	        format.json { render :show, status: :ok, location: @project }
-	      else
-	        format.html { render :edit }
-	        format.json { render json: @project.errors, status: :unprocessable_entity }
-	      end
-	    end
+	    if @project.update(project_params)
+	    	redirect_to root_path
+		else 
+			render 'edit'
+		end
 	end
 
 	def destroy
     	@project.destroy
-    	respond_to do |format|
-      	format.html { redirect_to root_url, notice: 'Todo list was successfully destroyed.' }
-     	format.json { head :no_content }
-    end
+    	redirect_to root_path
   	end
 
 	private
